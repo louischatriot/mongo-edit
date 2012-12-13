@@ -22,7 +22,7 @@
     "h4e": "0.3.0",
     "express": "3.0.0rc5",
     "mongoose": "3.3.x",
-    "underscore": "1.4.x",
+    "underscore": "1.4.x"
   },
   "devDependencies": {
     "chai": "1.0.x",
