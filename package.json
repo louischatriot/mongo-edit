@@ -1,0 +1,38 @@
+{
+  "name": "mongo-gui",
+  "private": true,
+  "version": "0.1.0",
+  "author": "tldr",
+  "contributors": [
+    "Louis Chatriot"
+  ],
+  "description": "REST GUI for MongoDB",
+  "keywords": [
+    "MongoDB"
+  , "GUI"
+  , "REST"
+  ],
+  "homepage": "https://github.com/louischatriot/mongo-gui",
+  "engines": {
+    "node": "0.8.2",
+    "npm": "1.1.42"
+  },
+  "dependencies": {
+    "async": "0.1.x",
+    "h4e": "0.3.0",
+    "express": "3.0.0rc5",
+    "mongoose": "3.3.x",
+    "underscore": "1.4.x",
+  },
+  "devDependencies": {
+    "chai": "1.0.x",
+    "mocha": "1.4.x",
+    "request": "2.9.x",
+    "sinon": "1.3.x"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "main": "server",
+  "licence": "MIT"
+}
