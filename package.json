@@ -18,11 +18,12 @@
     "npm": "1.1.42"
   },
   "dependencies": {
-    "async": "0.1.x",
-    "h4e": "0.3.0",
-    "express": "3.0.0rc5",
-    "mongoose": "3.3.x",
-    "underscore": "1.4.x"
+    "async": "0.1.x"
+  , "h4e": "0.3.0"
+  , "express": "3.0.0rc5"
+  , "mongoose": "3.3.x"
+  , "mongodb": "1.2.5"
+  , "underscore": "1.4.x"
   },
   "devDependencies": {
     "chai": "1.0.x",

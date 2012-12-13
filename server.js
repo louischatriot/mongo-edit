@@ -4,14 +4,14 @@
 
 var express = require('express')
   , http = require('http')
-  //, DbObject = require('./lib/db')
-  //, mongoose = require('mongoose')
-  //, models = require('./lib/models')
+  , mongodb = require('mongodb')
   , config = require('./lib/config')
-  , app                               // Will store our express app
+  , db = new mongodb.Db( config.db.name
+                       , new mongodb.Server(config.db.host, config.db.port, {})
+                       , { w: 1 } )
+  , app                    // Will store our express app
   //, routes = require('./lib/routes')
   , h4e = require('h4e');
-
 
 
 app = express();
@@ -47,7 +47,11 @@ app.use(app.router); // Map routes
 
 // Email confirmation
 app.get('/test', function(req, res, next) {
-  res.json(200, { message: 'First time' });
+  var tldrs = db.collection('tldrs');
+  tldrs.find({}).toArray(function (err, docs) {
+    res.json(200, docs);
+  });
+
 });
 
 
@@ -59,8 +63,8 @@ app.launchServer = function (cb) {
   var callback = cb ? cb : function () {}
     , self = this;
 
-  //self.db.connectToDatabase(function(err) {
-    //if (err) { return callback(err); }
+  db.open(function (err) {
+    if (err) { return callback(err); }
 
     self.apiServer = http.createServer(self);   // Let's not call it 'server' we never know if express will want to use this variable!
 
@@ -75,7 +79,7 @@ app.launchServer = function (cb) {
       console.log('Server started');
       callback();
     }]);
-  //});
+  });
 };
 
 
@@ -88,10 +92,9 @@ app.stopServer = function (cb) {
     , self = this;
 
   self.apiServer.close(function () {
-    //self.db.closeDatabaseConnection(function () {
-      bunyan.info('Server was stopped and connection to the database closed');
-      callback();
-    //});
+    db.close();
+    console.log('Server was stopped and connection to the database closed');
+    callback();
   });
 };
 
