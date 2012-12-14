@@ -6,7 +6,6 @@
 var config = require('../lib/config')
   , db = require('../lib/db')
   , ObjectID = require('mongodb').ObjectID
-  , beautify = require('../lib/js-beautify').js_beautify
   ;
 
 module.exports = function (req, res, next) {
@@ -24,7 +23,7 @@ module.exports = function (req, res, next) {
 
   collection = db.collection(req.params.collection);
   collection.findOne({ _id: new ObjectID(req.params.id) }, function (err, doc) {
-    values.doc = beautify(JSON.stringify(doc));
+    values.doc = JSON.stringify(doc, undefined, 2);
 
     res.render('layout', { values: values
                          , partials: partials
