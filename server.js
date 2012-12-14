@@ -33,7 +33,6 @@ h4e.setup({ app: app
  */
 
 app.use(express.bodyParser());
-//app.use(express.cookieParser());// Parse cookie data and use redis to store session data
 app.use(app.router); // Map routes
 
 
@@ -44,13 +43,7 @@ app.use(app.router); // Map routes
 
 app.get('/', routes.index);
 app.get('/:collection', routes.collection);
-app.get('/test', function(req, res, next) {
-  var tldrs = db.collection('tldrs');
-  tldrs.find({}).toArray(function (err, docs) {
-    res.json(200, docs);
-  });
-
-});
+app.get('/:collection/:id/edit', routes.docEdit);
 
 
 

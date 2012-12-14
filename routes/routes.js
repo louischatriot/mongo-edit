@@ -4,6 +4,8 @@
  */
 
 module.exports = {
-  index: require('./index.js')
+  index: require('./index')
+, collection: require('./collection')
+, docEdit: require('./docEdit')
 
 };
