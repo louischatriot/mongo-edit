@@ -2,7 +2,8 @@ Contents of the document {{collectionName}}/{{_id}}:
 <br><br>
 <div id="editor" class="editor">{{doc}}</div>
 
-<script src="/assets/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
   var editor = ace.edit("editor");
+  var JavaScriptMode = require("ace/mode/javascript").Mode;
+  editor.getSession().setMode(new JavaScriptMode());
 </script>
