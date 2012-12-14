@@ -4,13 +4,10 @@
 
 var express = require('express')
   , http = require('http')
-  , mongodb = require('mongodb')
   , config = require('./lib/config')
-  , db = new mongodb.Db( config.db.name
-                       , new mongodb.Server(config.db.host, config.db.port, {})
-                       , { w: 1 } )
+  , db = require('./lib/db')
   , app                    // Will store our express app
-  //, routes = require('./lib/routes')
+  , routes = require('./routes/routes')
   , h4e = require('h4e');
 
 
@@ -45,7 +42,7 @@ app.use(app.router); // Map routes
  *
  */
 
-// Email confirmation
+app.get('/', routes.index);
 app.get('/test', function(req, res, next) {
   var tldrs = db.collection('tldrs');
   tldrs.find({}).toArray(function (err, docs) {
