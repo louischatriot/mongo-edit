@@ -43,6 +43,7 @@ app.use(app.router); // Map routes
  */
 
 app.get('/', routes.index);
+app.get('/:collection', routes.collection);
 app.get('/test', function(req, res, next) {
   var tldrs = db.collection('tldrs');
   tldrs.find({}).toArray(function (err, docs) {
