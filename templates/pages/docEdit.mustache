@@ -1,11 +1,18 @@
 Contents of the document {{collectionName}}/{{_id}}:
 <br><br>
+<input id="save" class="btn" value="Save"><br>
 <div id="editor" class="editor">{{doc}}</div>
 
 
-
 <script>
+  // Setting up editor
   var editor = ace.edit("editor");
   var JSONMode = require("ace/mode/json").Mode;
   editor.getSession().setMode(new JSONMode());
+
+  // What to do on a save
+  $('#save').on('click', function () {
+    console.log("==============");
+    console.log(editor.getSession().getValue());
+  });
 </script>
