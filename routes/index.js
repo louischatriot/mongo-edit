@@ -12,8 +12,8 @@ module.exports = function (req, res, next) {
     , partials = { content: '{{>pages/collections}}' }
     ;
 
-  res.render('layout', { values: values
-                       , partials: partials
-                       });
+  return res.render('layout', { values: values
+                              , partials: partials
+                              });
 
 };

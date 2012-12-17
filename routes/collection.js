@@ -20,21 +20,26 @@ module.exports = function (req, res, next) {
   values.collectionName = req.params.collection;
 
   collection = db.collection(req.params.collection);
-  // TODO: sort by descending date of creation
-  collection.find({}, { limit: config.resultsPerPage })
-            .toArray(function (err, docs) {
-    var contents = [];
 
-    docs.forEach(function (doc) {
-      contents.push({ doc: JSON.stringify(doc, undefined, 2)
-                    , _id: doc._id });
-    });
+  collection.count(function (err, count) {
+    collection.find({})
+              .sort({ _id: -1 })
+              .limit(config.resultsPerPage)
+              .toArray(function (err, docs) {
+      var contents = [];
 
-    values.contents = contents;
+      docs.forEach(function (doc) {
+        contents.push({ doc: JSON.stringify(doc, undefined, 2)
+                      , _id: doc._id });
+      });
 
-    res.render('layout', { values: values
-                         , partials: partials
-                         });
+      values.contents = contents;
+
+      res.render('layout', { values: values
+                           , partials: partials
+                           });
+  });
+
   });
 
 };

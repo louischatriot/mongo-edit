@@ -22,6 +22,10 @@ body {
   margin-bottom: 30px;
 }
 
+.top-left-title a {
+  color: #333;
+}
+
 .doc-preview {
   overflow: hidden;
   white-space: nowrap;
