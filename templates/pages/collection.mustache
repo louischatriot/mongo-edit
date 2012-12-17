@@ -1,17 +1,19 @@
 <h2 class="title">{{collectionName}}</h2>
 <br><br>
-<ul>
 {{#contents}}
-<li>
-  <pre class="doc-preview">{{doc}}</pre>
-</li>
-<a href="/{{collectionName}}/{{_id}}/edit">edit</a>
+<div class="row">
+  <div class="span8">
+    <pre class="document doc-preview">{{doc}}</pre>
+  </div>
+  <div class="span1">
+    <a class="edit-link" href="/{{collectionName}}/{{_id}}/edit"><i class="icon icon-edit"></i></a>
+  </div>
+</div>
 {{/contents}}
-</ul>
 
 
 <script>
-$('pre').on('click', function (event) {
+$('.document').on('click', function (event) {
   $(event.currentTarget).toggleClass('doc-preview');
 });
 

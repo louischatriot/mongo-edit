@@ -26,3 +26,12 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.document {
+  font-size: 10px;
+}
+
+.edit-link {
+  position: relative;
+  top: 10px;
+}
