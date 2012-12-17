@@ -1,12 +1,15 @@
 <h2 class="title">{{collectionName}}</h2>
 <br><br>
 {{#pagination}}
-<div class="pagination">
+<div class="pagination collection-pagination">
   <ul>
+    <li><a href="/{{collectionName}}?page={{prev}}">&nbsp;&lt;&lt;&nbsp;</a></li>
     {{#pages}}
-    <li><a href="/{{collectionName}}?page={{pageNumber}}">{{pageNumber}}</a></li>
+    <li>
+      <a {{#active}}class="pagination-active"{{/active}} href="/{{collectionName}}?page={{pageNumber}}">{{label}}</a>
+    </li>
     {{/pages}}
-
+    <li><a href="/{{collectionName}}?page={{next}}">&nbsp;&gt;&gt;&nbsp;</a></li>
   </ul>
 </div>
 {{/pagination}}

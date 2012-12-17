@@ -41,3 +41,14 @@ body {
   position: relative;
   top: 10px;
 }
+
+.collection-pagination {
+  position: relative;
+  top: -20px;
+  margin-bottom: 0px;
+}
+
+.pagination-active {
+  font-weight: 400;
+  color: #666;
+}

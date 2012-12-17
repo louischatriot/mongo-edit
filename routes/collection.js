@@ -12,7 +12,7 @@ module.exports = function (req, res, next) {
     , partials = { content: '{{>pages/collection}}' }
     , collection
     , showAll = req.query.page === 'all'
-    , page = showAll ? 0 : (req.query.page || 1)
+    , page = parseInt(showAll ? 0 : (req.query.page || 1))
     , results = showAll ? 0 : config.pagination.resultsPerPage
     ;
 
@@ -25,19 +25,41 @@ module.exports = function (req, res, next) {
   collection = db.collection(req.params.collection);
 
   collection.count(function (err, count) {
-    var numPages, i;
+    var numPages, i
+      ;
 
     // Enable pagination
     if (results > 0 && count > results) {
       values.pagination = {};
       numPages = Math.ceil(count / config.pagination.resultsPerPage);
+      values.pagination.prev = Math.max(1, page - 1);
+      values.pagination.next = Math.min(numPages, page + 1);
 
+      values.pagination.pages = [];
       if (numPages <= config.pagination.maxPagesToShowAll) {
-        values.pagination.pages = [];
         for (i = 1; i <= numPages; i += 1) {
           values.pagination.pages.push({ pageNumber: i
-                                       , active: i.toString() === page.toString() });
+                                       , label: i
+                                       , active: i === page });
         }
+      } else {
+        values.pagination.pages.push({ pageNumber: 1, label: 1, active: 1 === page });
+
+        if (page - Math.floor(config.pagination.maxPagesToShowAll / 2) > 2) {
+          values.pagination.pages.push({ pageNumber: Math.floor((1 + page) / 2), label: '...' });
+        }
+
+        for (i = Math.max(2, page - Math.floor(config.pagination.maxPagesToShowAll / 2));
+             i <= Math.min(numPages - 1, page + Math.floor(config.pagination.maxPagesToShowAll / 2));
+             i += 1) {
+          values.pagination.pages.push({ pageNumber: i, label: i, active: i === page });
+        }
+
+        if (page + Math.floor(config.pagination.maxPagesToShowAll / 2) < numPages - 1) {
+          values.pagination.pages.push({ pageNumber: Math.floor((numPages + page) / 2), label: '...' });
+        }
+
+        values.pagination.pages.push({ pageNumber: numPages, label: numPages, active: numPages === page });
       }
     }
 
