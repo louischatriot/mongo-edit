@@ -1,14 +1,20 @@
 <h2 class="title">{{collectionName}}/{{_id}}</h2>
 <br><br>
-<input id="save" class="btn" value="Save"><br>
-<div id="editor" class="editor">{{doc}}</div>
+<div class="row">
+  <div id="editor" class="editor span9">{{doc}}</div>
+</div>
 
+<div class="after-editor">
+  <input type="button" id="save" class="btn btn-primary" value="Save"><br>
+</div>
+
+<!-- Used to do a non-AJAX redirect -->
 <form id="postToRedirect" style="display: none;" method="post" action="/{{collectionName}}/{{_id}}">
-  <input type="text" value="" name="newData">
+  <input type="hidden" value="" name="newData">
 </form>
 
 <script>
-  // Setting up editor
+  // Setting up ACE editor
   var editor = ace.edit("editor");
   var JSONMode = require("ace/mode/json").Mode;
   editor.getSession().setMode(new JSONMode());

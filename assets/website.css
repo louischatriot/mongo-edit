@@ -9,9 +9,12 @@ body {
 }
 
 .editor {
-  position: absolute;
-  width: 500px;
+  position: relative;
   height: 400px;
+}
+
+.after-editor {
+  margin-top: 410px;
 }
 
 .top-left-title {
