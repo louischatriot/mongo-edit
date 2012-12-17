@@ -20,7 +20,9 @@ module.exports = function (req, res, next) {
   values.collectionName = req.params.collection;
 
   collection = db.collection(req.params.collection);
-  collection.find({}).toArray(function (err, docs) {
+  // TODO: sort by descending date of creation
+  collection.find({}, { limit: config.resultsPerPage })
+            .toArray(function (err, docs) {
     var contents = [];
 
     docs.forEach(function (doc) {

@@ -6,6 +6,7 @@ body {
   position: relative;
   left: 15px;
   font-weight:300;
+  margin-bottom: -10px;
 }
 
 .editor {
