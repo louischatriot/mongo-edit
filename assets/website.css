@@ -29,6 +29,7 @@ body {
 
 .document {
   font-size: 10px;
+  cursor: move;
 }
 
 .edit-link {
