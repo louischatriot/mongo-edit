@@ -29,7 +29,7 @@ module.exports = function (req, res, next) {
       return res.json(403, err);
     }
 
-    return res.redirect(config.websiteBase + '/');
+    return res.redirect(config.websiteBase + '/' + req.params.collection + '/' + req.params.id + '/edit');
   });
 
 };

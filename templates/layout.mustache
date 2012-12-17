@@ -17,10 +17,23 @@
     <script src="/assets/ace/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="/assets/ace/mode-json.js" type="text/javascript" charset="utf-8"></script>
 
-    This is the common layout, ugly isn't it?
-    <br><br>
+    <div class="container">
+      <div class="row">
+        <div class="span3">
+          <h1 class="top-left-title">Mongo GUI</h1>
+          <ul class="nav nav-tabs nav-stacked" id="sidenav">
+            {{#collections}}
+            <li><a href="/{{.}}">{{.}}</a></li>
+            {{/collections}}
+          </ul>
+        </div>
 
-    {{>content}}
+        <div class="span9">
+          {{>content}}
+        </div>
+      </div>
+
+    </div>
 
   </body>
 </html>

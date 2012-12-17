@@ -1,5 +1,19 @@
+body {
+  padding-top: 25px;
+}
+
+.title {
+  position: relative;
+  left: 15px;
+  font-weight:300;
+}
+
 .editor {
   position: absolute;
   width: 500px;
   height: 400px;
+}
+
+.top-left-title {
+  margin-bottom: 30px;
 }

@@ -8,25 +8,12 @@ var config = require('../lib/config')
   ;
 
 module.exports = function (req, res, next) {
-  var values = {}
+  var values = req.renderValues || {}
     , partials = { content: '{{>pages/collections}}' }
     ;
 
-  db.collectionNames(function (err, _names) {
-    var names = [];
-
-    _names.forEach(function (name) {
-      var candidate = name.name.replace(config.db.name + '.', '');
-
-      // Push all user-defined collections
-      if (candidate.substring(0, 7) !== 'system.') { names.push(candidate) }
-    });
-    names = names.sort();
-    values.collections = names;
-
-    res.render('layout', { values: values
-                         , partials: partials
-                         });
-  });
+  res.render('layout', { values: values
+                       , partials: partials
+                       });
 
 };
