@@ -1,5 +1,16 @@
 <h2 class="title">{{collectionName}}</h2>
 <br><br>
+{{#pagination}}
+<div class="pagination">
+  <ul>
+    {{#pages}}
+    <li><a href="#">{{.}}</a></li>
+    {{/pages}}
+
+  </ul>
+</div>
+{{/pagination}}
+
 {{#contents}}
 <div class="row">
   <div class="span8">

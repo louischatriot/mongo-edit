@@ -11,6 +11,8 @@ module.exports = function (req, res, next) {
   var values = req.renderValues || {}
     , partials = { content: '{{>pages/collection}}' }
     , collection
+    , showAll = req.query.page === 'all'
+    , page = showAll ? 0 : (req.query.page || 1)
     ;
 
   if (!req.params.collection) {
@@ -22,9 +24,26 @@ module.exports = function (req, res, next) {
   collection = db.collection(req.params.collection);
 
   collection.count(function (err, count) {
+    var numPages, i;
+
+    // Enable pagination
+    if (config.pagination.resultsPerPage > 0 || !showAll) {
+
+
+      values.pagination = {};
+      numPages = Math.floor(count / config.pagination.resultsPerPage) + 1;
+
+      if (numPages <= config.pagination.maxPagesToShowAll) {
+        values.pagination.pages = [];
+        for (i = 1; i <= numPages; i += 1) { values.pagination.pages.push(i); }
+      }
+
+
+    }
+
     collection.find({})
               .sort({ _id: -1 })
-              .limit(config.resultsPerPage)
+              //.limit(config.pagination.resultsPerPage)
               .toArray(function (err, docs) {
       var contents = [];
 
