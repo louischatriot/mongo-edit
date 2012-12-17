@@ -45,8 +45,7 @@ app.use(app.router); // Map routes
 app.get('/', routes.index);
 app.get('/:collection', routes.collection);
 app.get('/:collection/:id/edit', routes.docEdit);
-//app.post('/:collection/:id', routes.docChange);
-app.post('/test', routes.docChange);
+app.post('/:collection/:id', routes.docChange);
 
 
 
