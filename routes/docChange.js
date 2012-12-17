@@ -15,7 +15,11 @@ module.exports = function (req, res, next) {
     return res.json(404, { message: 'Wrong URL format' });
   }
 
-  newDoc = JSON.parse(req.body.newData);
+  try {
+    newDoc = JSON.parse(req.body.newData);
+  } catch(e) {
+    return res.json(403, { message: 'Badly formatted JSON' });
+  }
 
   if (newDoc._id.toString() !== req.params.id) {
     return res.json(403, { message: '_id can\'t be modified' });

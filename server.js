@@ -38,11 +38,13 @@ app.use(middlewares.commonRenderValues);
 app.use(app.router); // Map routes
 
 
-/**
- * Routes for the API
- *
- */
+// Serving static files from paths that can't be confused with the webpages
+app.get('/assets/css/:file', express.static(__dirname));
+app.get('/assets/jquery/:file', express.static(__dirname));
+app.get('/assets/ace/:file', express.static(__dirname));
+app.get('/assets/bootstrap/:dir/:file', express.static(__dirname));
 
+// Serve the webpages
 app.get('/', routes.index);
 app.get('/:collection', routes.collection);
 app.get('/:collection/:id/edit', routes.docEdit);
