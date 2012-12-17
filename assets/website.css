@@ -20,3 +20,9 @@ body {
 .top-left-title {
   margin-bottom: 30px;
 }
+
+.doc-preview {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

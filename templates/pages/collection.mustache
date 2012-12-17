@@ -2,6 +2,18 @@
 <br><br>
 <ul>
 {{#contents}}
-<li>{{doc}}</li> <a href="/{{collectionName}}/{{_id}}/edit">edit</a>
+<li>
+  <pre class="doc-preview">{{doc}}</pre>
+</li>
+<a href="/{{collectionName}}/{{_id}}/edit">edit</a>
 {{/contents}}
 </ul>
+
+
+<script>
+$('pre').on('click', function (event) {
+  $(event.currentTarget).toggleClass('doc-preview');
+});
+
+</script>
+

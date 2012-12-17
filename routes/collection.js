@@ -24,7 +24,7 @@ module.exports = function (req, res, next) {
     var contents = [];
 
     docs.forEach(function (doc) {
-      contents.push({ doc: JSON.stringify(doc)
+      contents.push({ doc: JSON.stringify(doc, undefined, 2)
                     , _id: doc._id });
     });
 
