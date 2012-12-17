@@ -13,6 +13,7 @@ module.exports = function (req, res, next) {
     , collection
     , showAll = req.query.page === 'all'
     , page = showAll ? 0 : (req.query.page || 1)
+    , results = showAll ? 0 : config.pagination.resultsPerPage
     ;
 
   if (!req.params.collection) {
@@ -27,23 +28,22 @@ module.exports = function (req, res, next) {
     var numPages, i;
 
     // Enable pagination
-    if (config.pagination.resultsPerPage > 0 || !showAll) {
-
-
+    if (results > 0 && count > results) {
       values.pagination = {};
-      numPages = Math.floor(count / config.pagination.resultsPerPage) + 1;
+      numPages = Math.ceil(count / config.pagination.resultsPerPage);
 
       if (numPages <= config.pagination.maxPagesToShowAll) {
         values.pagination.pages = [];
-        for (i = 1; i <= numPages; i += 1) { values.pagination.pages.push(i); }
+        for (i = 1; i <= numPages; i += 1) {
+          values.pagination.pages.push({ pageNumber: i
+                                       , active: i.toString() === page.toString() });
+        }
       }
-
-
     }
 
     collection.find({})
               .sort({ _id: -1 })
-              //.limit(config.pagination.resultsPerPage)
+              .limit(results).skip((page - 1) * results)
               .toArray(function (err, docs) {
       var contents = [];
 
