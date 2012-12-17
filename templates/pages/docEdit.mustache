@@ -3,6 +3,9 @@ Contents of the document {{collectionName}}/{{_id}}:
 <input id="save" class="btn" value="Save"><br>
 <div id="editor" class="editor">{{doc}}</div>
 
+<form id="postToRedirect" style="display: none;" method="post" action="/test">
+  <input type="text" value="" name="newData">
+</form>
 
 <script>
   // Setting up editor
@@ -12,7 +15,8 @@ Contents of the document {{collectionName}}/{{_id}}:
 
   // What to do on a save
   $('#save').on('click', function () {
-    console.log("==============");
-    console.log(editor.getSession().getValue());
+    var newDoc = editor.getSession().getValue();
+    $('#postToRedirect input[name=newData]').attr('value', newDoc);
+    $('#postToRedirect').submit();
   });
 </script>

@@ -9,7 +9,7 @@ var config = require('../lib/config')
   ;
 
 module.exports = function (req, res, next) {
-  var values = {}
+  var values = req.renderValues || {}
     , partials = { content: '{{>pages/docEdit}}' }
     , collection
     ;

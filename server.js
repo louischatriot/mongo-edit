@@ -8,6 +8,7 @@ var express = require('express')
   , db = require('./lib/db')
   , app                    // Will store our express app
   , routes = require('./routes/routes')
+  , middlewares = require('./lib/middlewares')
   , h4e = require('h4e');
 
 
@@ -44,6 +45,8 @@ app.use(app.router); // Map routes
 app.get('/', routes.index);
 app.get('/:collection', routes.collection);
 app.get('/:collection/:id/edit', routes.docEdit);
+//app.post('/:collection/:id', routes.docChange);
+app.post('/test', routes.docChange);
 
 
 
@@ -55,7 +58,10 @@ app.launchServer = function (cb) {
     , self = this;
 
   db.open(function (err) {
-    if (err) { return callback(err); }
+    if (err) {
+      console.log("Error connecting to the DB");
+      return callback(err);
+    }
 
     self.apiServer = http.createServer(self);   // Let's not call it 'server' we never know if express will want to use this variable!
 
