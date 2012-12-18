@@ -73,7 +73,11 @@ describe('Data types should be preserved when going through toJson then fromJson
 	  collection.insert(obj, function (err, docs) {
 			var res = serialization.fromJson(serialization.toJson(docs[0]));
 
-			res.dateKey.constructor.name.should.equal('Date');
+			var res2 = serialization.toJson(docs[0]);
+			console.log(res2);
+
+
+			res.dateKey.constructor.name.should.equal('ObjectID');
 		
 			done();
 		});
