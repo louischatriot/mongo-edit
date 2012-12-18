@@ -26,7 +26,8 @@ module.exports = function (req, res, next) {
 
   collection.count(function (err, count) {
     var numPages, i
-      , left, right
+      , left, right   // Left and right bounds of central pages
+      , realLeft, realRight   // Taking into account the edges
       ;
 
     // Enable pagination
@@ -37,8 +38,6 @@ module.exports = function (req, res, next) {
       values.pagination.next = Math.min(numPages, page + 1);
 
       values.pagination.pages = [];
-      left = page - config.pagination.pagesAroundCurrent;
-      right = page + config.pagination.pagesAroundCurrent;
       if (numPages <= 3 + 2 * config.pagination.pagesAroundCurrent) {
         for (i = 1; i <= numPages; i += 1) {
           values.pagination.pages.push({ pageNumber: i
@@ -46,20 +45,26 @@ module.exports = function (req, res, next) {
                                        , active: i === page });
         }
       } else {
+        // Get the bounds
+        left = page - config.pagination.pagesAroundCurrent;
+        right = page + config.pagination.pagesAroundCurrent;
+        realLeft = left + Math.max(0, 2-left) - Math.max(0, right-numPages+2);
+        realRight = right + Math.max(0, 3-left) - Math.max(0, right-numPages+1);
+
         values.pagination.pages.push({ pageNumber: 1, label: 1, active: 1 === page });
 
-        if (left > 2) {
-          values.pagination.pages.push({ pageNumber: Math.floor((1 + left) / 2), label: '...' });
+        if (realLeft > 2) {
+          values.pagination.pages.push({ pageNumber: Math.floor((1 + realLeft) / 2), label: '...' });
         }
 
-        for (i = left + Math.max(0, 2-left) - Math.max(0, right-numPages+2);
-             i <= right + Math.max(0, 3-left) - Math.max(0, right-numPages+1);
+        for (i = realLeft;
+             i <= realRight;
              i += 1) {
           values.pagination.pages.push({ pageNumber: i, label: i, active: i === page });
         }
 
-        if (right < numPages - 1) {
-          values.pagination.pages.push({ pageNumber: Math.floor((numPages + right) / 2), label: '...' });
+        if (realRight < numPages - 1) {
+          values.pagination.pages.push({ pageNumber: Math.floor((numPages + realRight) / 2), label: '...' });
         }
 
         values.pagination.pages.push({ pageNumber: numPages, label: numPages, active: numPages === page });
