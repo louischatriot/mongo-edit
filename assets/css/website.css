@@ -52,3 +52,10 @@ body {
   font-weight: 400;
   color: #666;
 }
+
+.pagination-all-link {
+  font-style: italic;
+  font-size: 12px;
+  position: relative;
+  top: -10px;
+}

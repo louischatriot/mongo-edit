@@ -1,7 +1,7 @@
 <h2 class="title">{{collectionName}}</h2>
 <br><br>
 {{#pagination}}
-<div class="pagination collection-pagination">
+<div class="pagination pagination-small collection-pagination">
   <ul>
     <li><a href="/{{collectionName}}?page={{prev}}">&nbsp;&lt;&lt;&nbsp;</a></li>
     {{#pages}}
@@ -11,8 +11,9 @@
     {{/pages}}
     <li><a href="/{{collectionName}}?page={{next}}">&nbsp;&gt;&gt;&nbsp;</a></li>
   </ul>
+
+  <a href="/{{collectionName}}?page=all" class="pagination-all-link">&nbsp;&nbsp;See all results in one page</a>
 </div>
-<a href="/{{collectionName}}?page=all">See all results in one page</a>
 {{/pagination}}
 
 {{#contents}}
