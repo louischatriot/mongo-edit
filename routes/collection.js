@@ -26,6 +26,7 @@ module.exports = function (req, res, next) {
 
   collection.count(function (err, count) {
     var numPages, i
+      , left, right
       ;
 
     // Enable pagination
@@ -36,7 +37,9 @@ module.exports = function (req, res, next) {
       values.pagination.next = Math.min(numPages, page + 1);
 
       values.pagination.pages = [];
-      if (numPages <= config.pagination.maxPagesToShowAll) {
+      left = page - config.pagination.pagesAroundCurrent;
+      right = page + config.pagination.pagesAroundCurrent;
+      if (numPages <= 3 + 2 * config.pagination.pagesAroundCurrent) {
         for (i = 1; i <= numPages; i += 1) {
           values.pagination.pages.push({ pageNumber: i
                                        , label: i
@@ -45,18 +48,18 @@ module.exports = function (req, res, next) {
       } else {
         values.pagination.pages.push({ pageNumber: 1, label: 1, active: 1 === page });
 
-        if (page - Math.floor(config.pagination.maxPagesToShowAll / 2) > 2) {
-          values.pagination.pages.push({ pageNumber: Math.floor((1 + page) / 2), label: '...' });
+        if (left > 2) {
+          values.pagination.pages.push({ pageNumber: Math.floor((1 + left) / 2), label: '...' });
         }
 
-        for (i = Math.max(2, page - Math.floor(config.pagination.maxPagesToShowAll / 2));
-             i <= Math.min(numPages - 1, page + Math.floor(config.pagination.maxPagesToShowAll / 2));
+        for (i = left + Math.max(0, 2-left) - Math.max(0, right-numPages+2);
+             i <= right + Math.max(0, 3-left) - Math.max(0, right-numPages+1);
              i += 1) {
           values.pagination.pages.push({ pageNumber: i, label: i, active: i === page });
         }
 
-        if (page + Math.floor(config.pagination.maxPagesToShowAll / 2) < numPages - 1) {
-          values.pagination.pages.push({ pageNumber: Math.floor((numPages + page) / 2), label: '...' });
+        if (right < numPages - 1) {
+          values.pagination.pages.push({ pageNumber: Math.floor((numPages + right) / 2), label: '...' });
         }
 
         values.pagination.pages.push({ pageNumber: numPages, label: numPages, active: numPages === page });
