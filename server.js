@@ -14,11 +14,9 @@ var express = require('express')
 
 app = express();
 
-// Store db Instance in app. Avoid multiple instantiation in test files
-//app.db = new DbObject( config.dbHost
-                        //, config.dbName
-                        //, config.dbPort
-                        //);
+if (config.trustProxy) {
+  app.enable('trust proxy');
+}
 
 // Set up templating
 h4e.setup({ app: app
@@ -115,7 +113,7 @@ if (module.parent === null) { // Code to execute only when running as main
  */
 //process.on('SIGINT', function () {
   //app.stopServer(function () {
-    //bunyan.info('Exiting process');
+    //console.log('Exiting process');
     //process.exit(0);
   //});
 //});
