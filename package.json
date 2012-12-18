@@ -2,7 +2,7 @@
   "name": "mongo-gui",
   "private": true,
   "version": "0.1.0",
-  "author": "tldr",
+  "author": "tldr.io",
   "contributors": [
     "Louis Chatriot"
   ],
@@ -18,21 +18,9 @@
     "npm": "1.1.42"
   },
   "dependencies": {
-    "async": "0.1.x"
-  , "h4e": "0.3.0"
+    "h4e": "0.3.0"
   , "express": "3.0.0rc5"
-  , "mongoose": "3.3.x"
   , "mongodb": "1.2.5"
-  , "underscore": "1.4.x"
-  },
-  "devDependencies": {
-    "chai": "1.0.x",
-    "mocha": "1.4.x",
-    "request": "2.9.x",
-    "sinon": "1.3.x"
-  },
-  "scripts": {
-    "test": "make test"
   },
   "main": "server",
   "licence": "MIT"
