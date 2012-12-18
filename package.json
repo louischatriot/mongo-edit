@@ -22,6 +22,12 @@
   , "express": "3.0.0rc5"
   , "mongodb": "1.2.5"
   },
+  "devDependencies": {
+    "chai": "1.0.x",
+    "mocha": "1.4.x",
+    "request": "2.9.x",
+    "sinon": "1.3.x"
+  },
   "main": "server",
   "licence": "MIT"
 }
