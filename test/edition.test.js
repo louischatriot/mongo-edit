@@ -45,7 +45,7 @@ describe('Data types should be preserved when going through toJson then fromJson
 			//res.stringKey.should.be.a('string');
 			//res.numberKey.should.be.a('number');
 
-      var res2 = serialization.serializeForDBGUI({ stringKey: "bloupibloup"
+      var res2 = serialization.serializeForDBGUI({ stringKey: "bloupib\"loup"
                                                  , numberKey: 42
                                                  , objectKey: { restring: 'sfsdfs'
                                                               , renumber: 5
