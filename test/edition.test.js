@@ -35,6 +35,7 @@ describe('Data types should be preserved when going through toJson then fromJson
 	it('Strings and numbers', function (done) {
 		var obj = { stringKey: "Some string"
 			        , numberKey: 12
+              , shittyString: 'This one contains "double quotes" that must be escaped'
 		          }
 	    , collection = db.collection('test');
       ;
@@ -43,30 +44,9 @@ describe('Data types should be preserved when going through toJson then fromJson
       var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
 
       res.stringKey.should.be.a('string');
+      res.shittyString.should.be.a('string');
+      res.shittyString.should.equal('This one contains "double quotes" that must be escaped');
       res.numberKey.should.be.a('number');
-
-      //var res2 = serialization.serializeForDBGUI({ stringKey: "bloupib\"loup"
-                                                 //, numberKey: 42
-                                                 //, andadateatlast: new Date()
-                                                 //, objectKey: { restring: 'sfsdfs'
-                                                              //, renumber: 5
-                                                              //}
-                                                 //, arrayKey: [ 10
-                                                             //, { s1: "dsfsdf"
-                                                               //, s2: "dsfsfs"
-                                                               //, bbb: true
-                                                               //}
-                                                             //]
-                                                 //});
-			//console.log('==============');
-      //console.log(res2);
-
-      //var kk = serialization.deserializeFromGUI(res2);
-
-			//console.log('==============');
-      //console.log(kk);
-      //console.log(kk.arrayKey[1].bbb.constructor);
-      //console.log(kk.andadateatlast.constructor);
 
 			done();
 		});

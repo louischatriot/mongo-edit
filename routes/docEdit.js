@@ -6,6 +6,7 @@
 var config = require('../lib/config')
   , db = require('../lib/db')
   , ObjectID = require('mongodb').ObjectID
+  , serialization = require('../lib/serialization')
   ;
 
 module.exports = function (req, res, next) {
@@ -23,7 +24,7 @@ module.exports = function (req, res, next) {
 
   collection = db.collection(req.params.collection);
   collection.findOne({ _id: new ObjectID(req.params.id) }, function (err, doc) {
-    values.doc = JSON.stringify(doc, undefined, 2);
+    values.doc = serialization.serializeForGUI(doc);
 
     res.render('layout', { values: values
                          , partials: partials
