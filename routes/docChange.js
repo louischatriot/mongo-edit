@@ -6,6 +6,7 @@
 var config = require('../lib/config')
   , db = require('../lib/db')
   , ObjectID = require('mongodb').ObjectID
+  , serialization = require('../lib/serialization')
   ;
 
 module.exports = function (req, res, next) {
@@ -16,9 +17,9 @@ module.exports = function (req, res, next) {
   }
 
   try {
-    newDoc = JSON.parse(req.body.newData);
+    newDoc = serialization.deserializeFromGUI(req.body.newData);
   } catch(e) {
-    return res.json(403, { message: 'Badly formatted JSON' });
+    return res.json(403, { message: 'Badly formatted data' });
   }
 
   if (newDoc._id.toString() !== req.params.id) {
