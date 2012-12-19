@@ -7,11 +7,10 @@
 
 var should = require('chai').should()
   , assert = require('chai').assert
-  //, app = require('../server')
 	, serialization = require('../lib/serialization')
   , ObjectID = require('mongodb').ObjectID
+  , DBRef = require('mongodb').DBRef
   , db = require('../lib/db')
-  //, request = require('request')
 	;
 
 
@@ -24,12 +23,10 @@ describe('Data types should be preserved when going through toJson then fromJson
 			// Start with a clean DB
 			db.dropDatabase(done);
 		});
-		//app.launchServer(done);
 	});
 
 	after(function (done) {
 		db.close(done);
-		//app.stopServer(done);
 	});
 
 	it('Strings and numbers', function (done) {
@@ -78,6 +75,87 @@ describe('Data types should be preserved when going through toJson then fromJson
 
       res.objectIdKey.constructor.name.should.equal('ObjectID');
 		
+			done();
+		});
+	});
+
+	it('Nested objects', function (done) {
+		var obj = { someNumber: 32
+              , nestedObject: { someobjectId: new ObjectID('123456789009876543211234')
+                , someText: "blah blah blah"
+                , someNumber: 1
+                }
+		          }
+	    , collection = db.collection('test');
+      ;
+
+	  collection.insert(obj, function (err, docs) {
+      var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
+
+      res.nestedObject.someobjectId.constructor.name.should.equal('ObjectID');
+      res.nestedObject.someText.should.equal("blah blah blah");
+      res.nestedObject.someNumber.should.equal(1);
+		
+			done();
+		});
+	});
+
+	it('Nested Arrays', function (done) {
+		var obj = { someNumber: 32
+              , nestedObject: { someobjectId: new ObjectID('123456789009876543211234')
+                , nestedArray: [1, 6, 3, 8, 4]
+                , someNumber: 1
+                }
+		          }
+	    , collection = db.collection('test');
+      ;
+
+	  collection.insert(obj, function (err, docs) {
+      var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
+
+      res.nestedObject.nestedArray.length.should.equal(5);
+      res.nestedObject.nestedArray[0].should.equal(1);
+      res.nestedObject.nestedArray[1].should.equal(6);
+      res.nestedObject.nestedArray[2].should.equal(3);
+      res.nestedObject.nestedArray[3].should.equal(8);
+      res.nestedObject.nestedArray[4].should.equal(4);
+
+      done();
+		});
+	});
+
+	it('undefined', function (done) {
+		var obj = { defined: 'bloup'
+              , theUndefined: undefined
+		          }
+	    , collection = db.collection('test');
+      ;
+
+	  collection.insert(obj, function (err, docs) {
+      var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
+
+      assert.isUndefined(res.theUndefined);
+      res.defined.should.equal('bloup');
+
+			done();
+		});
+	});
+
+	it('DBRef', function (done) {
+		var obj = { dbrefKey: new DBRef('another', '123456789009876543211234')
+		          }
+	    , collection = db.collection('test');
+      ;
+
+	  collection.insert(obj, function (err, docs) {
+      //var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
+
+      //res.objectIdKey.constructor.name.should.equal('ObjectID');
+
+      var a = new DBRef('another', '123456789009876543211234');
+		
+      console.log(docs);
+
 			done();
 		});
 	});
