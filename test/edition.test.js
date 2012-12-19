@@ -32,7 +32,7 @@ describe('Data types should be preserved when going through toJson then fromJson
 		//app.stopServer(done);
 	});
 
-	it('Strings and numbers', function (done) {
+	it.only('Strings and numbers', function (done) {
 		var obj = { stringKey: "Some string"
 			        , numberKey: 12
 		          }
@@ -40,11 +40,25 @@ describe('Data types should be preserved when going through toJson then fromJson
       ;
 
 	  collection.insert(obj, function (err, docs) {
-			var res = serialization.fromJson(serialization.toJson(docs[0]));
+			//var res = serialization.fromJson(serialization.toJson(docs[0]));
 
-			res.stringKey.should.be.a('string');
-			res.numberKey.should.be.a('number');
-		
+			//res.stringKey.should.be.a('string');
+			//res.numberKey.should.be.a('number');
+
+      var res2 = serialization.serializeForDBGUI({ stringKey: "bloupibloup"
+                                                 , numberKey: 42
+                                                 , objectKey: { restring: 'sfsdfs'
+                                                              , renumber: 5
+                                                              }
+                                                 , arrayKey: [ 10
+                                                             , { s1: "dsfsdf"
+                                                               , s2: "dsfsfs"
+                                                               }
+                                                             ]
+                                                 });
+		  console.log('==============');
+      console.log(res2);
+
 			done();
 		});
 	});
@@ -64,20 +78,21 @@ describe('Data types should be preserved when going through toJson then fromJson
 		});
 	});
 
-	it.only('ObjectId', function (done) {
-		var obj = { dateKey: new ObjectID('123456789009876543211234')
+	it('ObjectId', function (done) {
+		var obj = { objectIdKey: new ObjectID('123456789009876543211234')
+		          , dateKey: new Date()
 		          }
 	    , collection = db.collection('test');
       ;
 
 	  collection.insert(obj, function (err, docs) {
-			var res = serialization.fromJson(serialization.toJson(docs[0]));
+			//var res = serialization.fromJson(serialization.toJson(docs[0]));
 
-			var res2 = serialization.toJson(docs[0]);
+			var res2 = serialization.serializeForDBGUI(docs[0]);
 			console.log(res2);
 
 
-			res.dateKey.constructor.name.should.equal('ObjectID');
+			//res.dateKey.constructor.name.should.equal('ObjectID');
 		
 			done();
 		});
