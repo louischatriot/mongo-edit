@@ -53,6 +53,7 @@ describe('Data types should be preserved when going through toJson then fromJson
                                                  , arrayKey: [ 10
                                                              , { s1: "dsfsdf"
                                                                , s2: "dsfsfs"
+                                                               , bbb: true
                                                                }
                                                              ]
                                                  });
