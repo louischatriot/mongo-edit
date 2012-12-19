@@ -52,7 +52,7 @@ describe('Data types should be preserved when going through toJson then fromJson
 		});
 	});
 
-	it('Dates', function (done) {
+	it('Date', function (done) {
 		var obj = { dateKey: new Date()
 		          }
 	    , collection = db.collection('test');
