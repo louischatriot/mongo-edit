@@ -143,18 +143,23 @@ describe('Data types should be preserved when going through toJson then fromJson
 
 	it('DBRef', function (done) {
 		var obj = { dbrefKey: new DBRef('another', '123456789009876543211234')
+              , anotherDBR: new DBRef('anothernother', '111111111111111111111111', 'thedb')
 		          }
 	    , collection = db.collection('test');
       ;
 
 	  collection.insert(obj, function (err, docs) {
-      //var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
+      var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
 
-      //res.objectIdKey.constructor.name.should.equal('ObjectID');
+      res.dbrefKey._bsontype.should.equal('DBRef');
+      res.dbrefKey.namespace.should.equal('another');
+      res.dbrefKey.oid.should.equal('123456789009876543211234');
+		  assert.isUndefined(res.dbrefKey.db);
 
-      var a = new DBRef('another', '123456789009876543211234');
-		
-      console.log(docs);
+      res.anotherDBR._bsontype.should.equal('DBRef');
+      res.anotherDBR.namespace.should.equal('anothernother');
+      res.anotherDBR.oid.should.equal('111111111111111111111111');
+      res.anotherDBR.db.should.equal('thedb');
 
 			done();
 		});
