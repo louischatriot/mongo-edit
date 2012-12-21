@@ -16,8 +16,8 @@
 <script>
   // Setting up ACE editor
   var editor = ace.edit("editor");
-  var JSONMode = require("ace/mode/json").Mode;
-  editor.getSession().setMode(new JSONMode());
+  var JSMode = require("ace/mode/javascript").Mode;
+  editor.getSession().setMode(new JSMode());
 
   // What to do on a save
   $('#save').on('click', function () {
