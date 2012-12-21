@@ -15,9 +15,25 @@
 
 <script>
   // Setting up ACE editor
-  var editor = ace.edit("editor");
-  var JSMode = require("ace/mode/javascript").Mode;
-  editor.getSession().setMode(new JSMode());
+  var editor = ace.edit("editor")
+    , JSModeC = require("ace/mode/javascript").Mode
+    , JSMode = new JSModeC();
+    ;
+
+
+console.log("==========");
+console.log(JSMode.$tokenizer.rules['doc-start']);
+
+/*JSMode.$tokenizer.rules['doc-start'].push({ merge: true, regex: '{', token: 'comment.doc' });*/
+
+console.log(JSMode.$tokenizer.rules['doc-start']);
+
+  editor.getSession().setMode(JSMode);
+
+
+setTimeout(function () {
+console.log(editor.getSession().getAnnotations());
+}, 3000);
 
   // What to do on a save
   $('#save').on('click', function () {
