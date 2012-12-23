@@ -30,6 +30,8 @@ module.exports = function (req, res, next) {
       , realLeft, realRight   // Taking into account the edges
       ;
 
+    values.collectionCount = count;
+
     // Enable pagination
     if (results > 0 && count > results) {
       values.pagination = {};
@@ -87,7 +89,7 @@ module.exports = function (req, res, next) {
       res.render('layout', { values: values
                            , partials: partials
                            });
-  });
+    });
 
   });
 
