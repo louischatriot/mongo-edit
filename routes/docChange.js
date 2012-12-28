@@ -19,7 +19,7 @@ module.exports = function (req, res, next) {
   try {
     newDoc = serialization.deserializeFromGUI(req.body.newData);
   } catch(e) {
-    return res.json(403, { message: 'Badly formatted data', e });
+    return res.json(403, { message: 'Badly formatted data', error: e });
   }
 
   if (newDoc._id.toString() !== req.params.id) {
