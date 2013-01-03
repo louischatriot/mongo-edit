@@ -9,7 +9,7 @@ Useful for editing documents manually with a user-friendly interface.
 * `/:collection` shows the contents of `collection`
 * `/:collection/:id/edit` shows a web-based editor (<a href="https://github.com/ajaxorg/ace" target="_blank">Ace</a>) so that you can change the contents of the `collection`'s document with id `id`. The document is shown as a Javascript object that will replace the current one in the database when you save it. The editor features syntax highlighting and checking. An image being worth a thousands words, here is a screenshot:  
 
-<img src="https://raw.github.com/tldrio/mongo-gui/master/assets/mongoEdit.png" alt="mongo edit screenshot">
+<img src="https://raw.github.com/tldrio/mongo-edit/master/assets/mongoEdit.png" alt="mongo edit screenshot">
 
 ## Install
 
