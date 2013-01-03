@@ -1,33 +1,31 @@
 {
-  "name": "mongo-gui",
-  "private": true,
-  "version": "0.1.0",
-  "author": "tldr.io",
-  "contributors": [
+  "name": "mongo-edit"
+, "version": "0.1.0"
+, "author": { "name": "tldr.io", "email": "meta@tldr.io"}
+, "contributors": [
     "Louis Chatriot"
-  ],
-  "description": "REST GUI for MongoDB",
-  "keywords": [
+  ]
+, "description": "Dead simple GUI for editing MongoDB documents",
+, "keywords": [
     "MongoDB"
   , "GUI"
-  , "REST"
-  ],
-  "homepage": "https://github.com/louischatriot/mongo-gui",
-  "engines": {
-    "node": "0.8.2",
-    "npm": "1.1.42"
-  },
-  "dependencies": {
+  , "simple"
+  ]
+, "homepage": "https://github.com/tldrio/mongo-edit"
+, "repository": { "type": "git"
+                , "url": "git://github.com/tldrio/mongo-edit"
+                }
+, "dependencies": {
     "h4e": "0.3.0"
   , "express": "3.0.0rc5"
   , "mongodb": "1.2.5"
-  },
-  "devDependencies": {
-    "chai": "1.0.x",
-    "mocha": "1.4.x",
-    "request": "2.9.x",
-    "sinon": "1.3.x"
-  },
-  "main": "server",
-  "licence": "MIT"
+  }
+, "devDependencies": {
+    "chai": "1.0.x"
+  , "mocha": "1.4.x"
+  , "request": "2.9.x"
+  , "sinon": "1.3.x"
+  }
+, "main": "server"
+, "licence": "MIT"
 }
