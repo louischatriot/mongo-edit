@@ -17,23 +17,14 @@
   // Setting up ACE editor
   var editor = ace.edit("editor")
     , JSModeC = require("ace/mode/javascript").Mode
-    , JSMode = new JSModeC();
+    , JSMode = new JSModeC()
+    , sess = editor.getSession()
     ;
-
-
-console.log("==========");
-console.log(JSMode.$tokenizer.rules['doc-start']);
-
-/*JSMode.$tokenizer.rules['doc-start'].push({ merge: true, regex: '{', token: 'comment.doc' });*/
-
-console.log(JSMode.$tokenizer.rules['doc-start']);
 
   editor.getSession().setMode(JSMode);
 
-
-setTimeout(function () {
-console.log(editor.getSession().getAnnotations());
-}, 3000);
+  // Don't show "fake errors" since just the object is not considered valid javascript
+  sess.setValue('doc = ' + sess.getValue() + ';');
 
   // What to do on a save
   $('#save').on('click', function () {
