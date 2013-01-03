@@ -15,9 +15,13 @@ This is NOT a complete admin UI, just a way to edit documents manually with a us
 `npm install mongo-edit`  
 
 The config file, `/lib/config.js` needs to be modified to fit your situation. The parameters are:  
-* db.host, db.port, db.name: what database to connect to. It is assumed that you run in a trusted environment
+* `db.host`, `db.port`, `db.name`: what database to connect to. It is assumed that you run in a trusted environment and don't need password to access the database.
+* `svPort`: the port on which the webserver will run.
+* `trustProxy`: needs to be set to `true` if Mongo Edit is run behind a reverse proxy such as Nginx. If you run Mongo Edit in production and it is accessible from the outside, **this should be the case**. Obviously, it should be protected by a BasicAuth over SSL.
+* `pagination`: the parameters for the pagination when showing the contents of a collection. The defaults should be fine.
 
-You can define different environments (by default we have 'development' and 'production')
+
+You can define different environments (by default we have 'development' and 'production'). By default, the development environment is used, to user another run `NODE_ENV=the_environment node server.js`.
 
 
 
