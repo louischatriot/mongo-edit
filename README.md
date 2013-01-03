@@ -11,6 +11,8 @@ Useful for editing documents manually with a user-friendly interface.
 
 <img src="https://raw.github.com/tldrio/mongo-gui/master/assets/mongoEdit.png" alt="mongo edit screenshot">
 
+## Install
+
 
 
 
