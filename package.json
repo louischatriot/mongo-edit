@@ -5,7 +5,7 @@
 , "contributors": [
     "Louis Chatriot"
   ]
-, "description": "Dead simple GUI for editing MongoDB documents",
+, "description": "Dead simple GUI for editing MongoDB documents"
 , "keywords": [
     "MongoDB"
   , "GUI"
