@@ -21,15 +21,25 @@
     , sess = editor.getSession()
     ;
 
-  editor.getSession().setMode(JSMode);
+  sess.setMode(JSMode);
 
   // Don't show "fake errors" since just the object is not considered valid javascript
   sess.setValue('doc = ' + sess.getValue() + ';');
 
   // What to do on a save
   $('#save').on('click', function () {
-    var newDoc = editor.getSession().getValue();
-    $('#postToRedirect input[name=newData]').attr('value', newDoc);
-    $('#postToRedirect').submit();
+    var errorsOrWarnings = sess.getAnnotations(), canSave = true, i;
+
+    for (i = 0; i < errorsOrWarnings.length; i += 1) {
+      if (errorsOrWarnings[i].type !== 'info') { canSave = false; }
+    }
+
+    if (canSave) {
+      var newDoc = editor.getSession().getValue();
+      $('#postToRedirect input[name=newData]').attr('value', newDoc);
+      $('#postToRedirect').submit();
+    } else {
+      alert('You should make this valid javascript before saving!');
+    }
   });
 </script>
