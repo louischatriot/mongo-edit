@@ -33,11 +33,11 @@ If you run Mongo Edit in production, **run it behind your reverse proxy, and pro
 We want Mongo Edit to remain super simple, there are already plenty complete admin UIs out there. Still, if you think something is missing don't hesitate to drop us an issue or a PR.
 
 ## Contributors
-project: mongo-edit
- commits: 78
- active : 10 days
- files  : 114
- authors: 
+    project: mongo-edit
+    commits: 78
+    active : 10 days
+    files  : 114
+    authors: 
     78  Louis Chatriot          100.0%
 
 
