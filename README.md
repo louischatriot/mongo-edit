@@ -2,7 +2,7 @@ Mongo Edit
 =========
 
 Dead simple Graphical User Interface for MongoDB.
-Useful for editing documents manually with a user-friendly interface.
+This is NOT a complete admin UI, just a way to edit documents manually with a user-friendly interface. It's a perfect fit for people working with an ODM, for example <a href="https://github.com/LearnBoost/mongoose" target="_blank">Mongoose</a> which is in charge of the administration.
 
 ## What does it do?
 * `/` shows the list of all collections
@@ -11,8 +11,13 @@ Useful for editing documents manually with a user-friendly interface.
 
 <img src="https://raw.github.com/tldrio/mongo-edit/master/assets/mongoEdit.png" alt="mongo edit screenshot">
 
-## Install
+## Install and configure
+`npm install mongo-edit`  
 
+The config file, `/lib/config.js` needs to be modified to fit your situation. The parameters are:  
+* db.host, db.port, db.name: what database to connect to. It is assumed that you run in a trusted environment
+
+You can define different environments (by default we have 'development' and 'production')
 
 
 
