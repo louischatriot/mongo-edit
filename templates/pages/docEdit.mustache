@@ -5,8 +5,8 @@
 </div>
 
 <div class="after-editor">
-  <input type="button" id="save" class="btn btn-primary" value="Save">
-  <input type="button" id="delete" class="btn btn-danger btn-mini" value="Delete">
+  <input type="button" id="edit" class="btn btn-primary" value="Edit">&nbsp;&nbsp;&nbsp;
+  <input type="button" id="delete" class="btn btn-danger" value="Delete">
   <br>
 </div>
 
@@ -29,7 +29,7 @@
   sess.setValue('doc = ' + sess.getValue() + ';');
 
   // What to do on a save
-  $('#save').on('click', function () {
+  $('#edit').on('click', function () {
     var errorsOrWarnings = sess.getAnnotations(), canSave = true, i;
 
     for (i = 0; i < errorsOrWarnings.length; i += 1) {
