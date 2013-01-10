@@ -8,5 +8,5 @@ module.exports = {
 , collection: require('./collection')
 , docEdit: require('./docEdit')
 , docChange: require('./docChange')
-
+, createDoc: require('./createDoc')
 };
