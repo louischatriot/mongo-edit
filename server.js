@@ -46,7 +46,7 @@ app.get('/favicon.ico', function (req, res, next) { return res.send(404); });   
 // Serve the webpages
 app.get('/', routes.index);
 app.get('/:collection', routes.collection);
-app.get('/:collection/create-document', routes.createDoc);
+app.get('/:collection/new', routes.createDoc);
 app.get('/:collection/:id/edit', routes.docEdit);
 app.post('/:collection/:id', routes.docChange);
 
