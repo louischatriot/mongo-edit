@@ -5,7 +5,9 @@
 </div>
 
 <div class="after-editor">
-  <input type="button" id="save" class="btn btn-primary" value="Save"><br>
+  <input type="button" id="save" class="btn btn-primary" value="Save">
+  <input type="button" id="delete" class="btn btn-danger btn-mini" value="Delete">
+  <br>
 </div>
 
 <!-- Used to do a non-AJAX redirect -->
@@ -40,6 +42,15 @@
       $('#postToRedirect').submit();
     } else {
       alert('You should make this valid javascript before saving!');
+    }
+  });
+
+  // What to do on a click on 'delete'
+  $('#delete').on('click', function () {
+    var doit = confirm('Are you sure you want to delete this document? There is no going back!');
+
+    if (doit) {
+      window.location = '/{{collectionName}}/{{_id}}/delete';
     }
   });
 </script>
