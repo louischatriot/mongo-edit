@@ -20,7 +20,7 @@ module.exports = function (req, res, next) {
   collection.remove({ _id: new ObjectID(req.params.id) }, { single: true, w:1 }, function (err) {
     if (err) { return res.json(403, err); }
 
-    return res.redirect('/' + req.params.collection);
+    return res.redirect('/' + req.params.collection + '?type=alert-success&message=The document was deleted, no turning back now!');
   });
 
 };

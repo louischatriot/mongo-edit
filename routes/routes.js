@@ -9,5 +9,5 @@ module.exports = {
 , docEdit: require('./docEdit')
 , docDelete: require('./docDelete')
 , docChange: require('./docChange')
-, createDoc: require('./createDoc')
+, docCreate: require('./docCreate')
 };
