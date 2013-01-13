@@ -1,6 +1,6 @@
 {
   "name": "mongo-edit"
-, "version": "0.2.0"
+, "version": "0.2.1"
 , "author": { "name": "tldr.io", "email": "meta@tldr.io"}
 , "contributors": [
     "Louis Chatriot"
