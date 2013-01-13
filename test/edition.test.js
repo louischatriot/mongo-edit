@@ -14,7 +14,7 @@ var should = require('chai').should()
 	;
 
 
-describe('Data types should be preserved when going through toJson then fromJson', function () {
+describe('Data types should be preserved when serializing then deserializing', function () {
 
 	before(function (done) {
 		db.open(function (err) {
@@ -165,4 +165,64 @@ describe('Data types should be preserved when going through toJson then fromJson
 		});
 	});
 
+
 });
+
+
+describe('Strings should be correctly escaped', function () {
+
+	before(function (done) {
+		db.open(function (err) {
+			if (err) { return done(err); }
+
+			// Start with a clean DB
+			db.dropDatabase(done);
+		});
+	});
+
+	after(function (done) {
+		db.close(done);
+	});
+
+	it('Object keys', function (done) {
+		var obj = { good: 'bloup'
+		          }
+	    , collection = db.collection('test');
+      ;
+
+    obj['such/a/shit"ty/key'] = 'another bloup';
+    obj['34a12'] = 'another blip';
+
+    collection.insert(obj, function (err, docs) {
+      var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
+
+      res.good.should.equal('bloup');
+      res['such/a/shit"ty/key'].should.equal('another bloup');
+      res['34a12'].should.equal('another blip');
+
+			done();
+		});
+	});
+
+	it('Strings', function (done) {
+		var obj = { good: 'bloup'
+              , bad: 'Hello\r\nHow are you?\r\nPeace'
+		          }
+	    , collection = db.collection('test');
+      ;
+
+
+    collection.insert(obj, function (err, docs) {
+      var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
+
+      res.good.should.equal('bloup');
+      res.bad.should.equal('Hello\r\nHow are you?\r\nPeace');
+
+			done();
+		});
+	});
+
+
+});
+
+
