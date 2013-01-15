@@ -50,9 +50,6 @@
   // What to do on a click on 'delete'
   $('#delete').on('click', function () {
     var doit = confirm('Are you sure you want to delete this document? There is no going back!');
-
-    if (doit) {
-      window.location = '/{{collectionName}}/{{_id}}/delete';
-    }
+    if (doit) { window.location = '/{{collectionName}}/{{_id}}/delete'; }
   });
 </script>
