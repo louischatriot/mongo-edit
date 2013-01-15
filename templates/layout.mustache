@@ -27,6 +27,20 @@
             <li><a href="/{{.}}">{{.}}</a></li>
             {{/collections}}
           </ul>
+          <!-- Form to create a new collection -->
+          <form id="createCollection" class="form-inline" method="post">
+            <input type="text" id="collectionName" placeholder="Create a new collection">
+            <button type="submit" style="display:none">Go</button>
+          </form>
+          <script>
+            $('#createCollection').on('submit', function (event) {
+              var collectionName = $('#collectionName').val();
+              event.preventDefault();
+              if (collectionName.length === 0) { return; }
+              window.location = '/' + collectionName + '/new';
+            });
+          </script>
+
         </div>
 
         <div class="span9">

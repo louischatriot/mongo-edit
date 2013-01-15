@@ -1,12 +1,11 @@
 /**
- * Create a new empty document
- * Works for now only if there is no 'unique' or 'required' constraint
+ * Create a new document
+ * All fields are empty except indexed ones (the document wouldn't be saved otherwise)
  *
  */
 
 var config = require('../lib/config')
   , db = require('../lib/db')
-  , ObjectID = require('mongodb').ObjectID
   , crypto = require('crypto')
   , serialization = require('../lib/serialization')
   ;
