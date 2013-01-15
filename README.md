@@ -2,14 +2,20 @@ Mongo Edit
 =========
 
 Dead simple Graphical User Interface for MongoDB.
-This is NOT a complete admin UI, just a way to edit documents manually with a user-friendly interface. It's a perfect fit for people working with an ODM, for example <a href="https://github.com/LearnBoost/mongoose" target="_blank">Mongoose</a> which is in charge of the administration.
+This is NOT a complete admin UI, just a way to edit documents manually with a user-friendly interface, as well as create and delete documents and collections It's a perfect fit for people working with an ODM, for example <a href="https://github.com/LearnBoost/mongoose" target="_blank">Mongoose</a> which is in charge of the administration.
 
 ## What does it do?
+It allows you to create, edit and delete documents, as well as create and delete collections. Here are the URLs used in the GUI, to which you can link within your application to directly perform the corresponding operations:  
 * `/` shows the list of all collections
-* `/:collection` shows the contents of `collection`
+* `/:collection` shows the contents of `collection` (in reverse chronological order, earliest on top)
+* `/:collection/new` creates a new collection with name `:collection`
+* `/:collection/newDocument` creates a new document in collection `:collection`. All indexed/unique fields are pre-populated with a random string so that it can be saved right away
 * `/:collection/:id/edit` shows a web-based editor (<a href="https://github.com/ajaxorg/ace" target="_blank">Ace</a>) so that you can change the contents of the `collection`'s document with id `id`. The document is shown as a Javascript object that will replace the current one in the database when you save it. The editor features syntax highlighting and checking. An image being worth a thousands words, here is a screenshot:  
 
 <img src="https://raw.github.com/tldrio/mongo-edit/master/assets/mongoEdit.png" alt="mongo edit screenshot">
+
+* `/:collection/delete`: delete `:collection`. Beware, it won't ask for confirmation if the URL is called directly. It will only ask if you click the "Delete collection" button when on page `/:collection`.
+* `/:collection/:id/delete`: delete document with _id `:id` in `:collection`. As for the above route, the GUI will ask for confirmation if you click the "Delete" button in the "edit a document" view but not if you call the URL directly.
 
 ## Install and configure
 Prerequisite: <a href="https://github.com/joyent/node" target="_blank"><b>Node.js</b></a> should be installed  
