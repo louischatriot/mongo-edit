@@ -7,8 +7,10 @@
   ]
 , "description": "Dead simple GUI for editing MongoDB documents"
 , "keywords": [
-    "MongoDB"
-  , "GUI"
+    "mongodb"
+  , "mongo"
+  , "edit"
+  , "gui"
   , "simple"
   ]
 , "homepage": "https://github.com/tldrio/mongo-edit"
