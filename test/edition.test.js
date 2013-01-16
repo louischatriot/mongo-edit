@@ -141,22 +141,22 @@ describe('Data types should be preserved when serializing then deserializing', f
 		});
 	});
 
-        it('null', function (done) {
-                var obj = { notNull: 'notNull'
+  it('null', function (done) {
+    var obj = { notNull: 'notNull'
               , theNull: null
-                          }
-            , collection = db.collection('test');
+              }
+      , collection = db.collection('test');
       ;
 
-          collection.insert(obj, function (err, docs) {
+    collection.insert(obj, function (err, docs) {
       var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
 
       assert.isNull(res.theNull);
       res.notNull.should.equal('notNull');
 
-                        done();
-                });
-        });
+      done();
+    });
+  });
 
 
 	it('DBRef', function (done) {
