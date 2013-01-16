@@ -42,11 +42,13 @@ We want Mongo Edit to remain super simple, there are already plenty complete adm
 
 ## Contributors
     project: mongo-edit
-    commits: 78
-    active : 10 days
-    files  : 114
+    commits: 112
+    active : 17 days
+    files  : 119
     authors: 
-    78  Louis Chatriot          100.0%
+    112  Louis Chatriot          95.5%
+      4  Raymond Feng            3.6%
+      1  Stanislas Marion        0.9%
 
 
 ## License 
