@@ -19,8 +19,8 @@
                 }
 , "dependencies": {
     "h4e": "0.3.0"
-  , "express": "3.0.0rc5"
-  , "mongodb": "1.2.5"
+  , "express": "3.0.6"
+  , "mongodb": "1.2.9"
   }
 , "devDependencies": {
     "chai": "1.0.x"
