@@ -79,7 +79,7 @@ app.launchServer = function (cb) {
 
     // Begin to listen. If the callback gets called, it means the server was successfully launched
     self.apiServer.listen.apply(self.apiServer, [config.svPort, function() {
-      console.log('Server started');
+      console.log('Server started on port ' + config.svPort);
       callback();
     }]);
   });
