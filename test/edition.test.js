@@ -240,6 +240,24 @@ describe('Strings should be correctly escaped', function () {
 		});
 	});
 
+  it('Special characters such as backslashes and the string delimiter (double quote)', function (done) {
+		var obj = { good: 'bloup'
+              , bad: 'A backslash \\ and a double quote "'
+		          }
+	    , collection = db.collection('test');
+      ;
+
+
+    collection.insert(obj, function (err, docs) {
+      var res = serialization.deserializeFromGUI(serialization.serializeForGUI(docs[0]));
+
+      res.good.should.equal('bloup');
+      res.bad.should.equal('A backslash \\ and a double quote "');
+
+			done();
+		});
+  });
+
 
 });
 
