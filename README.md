@@ -37,8 +37,8 @@ Run with `node server.js`, or `NODE_ENV=env node server.js` if you don't want to
 If you run Mongo Edit in production, **run it behind your reverse proxy, and protected with a Basic Auth on SSL**.
 
 
-## Feature requests
-We want Mongo Edit to remain super simple, there are already plenty complete admin UIs out there. Still, if you think something is missing don't hesitate to drop us an issue or a PR.
+## Feature requests and bugfixes
+We want Mongo Edit to remain super simple, there are already plenty complete admin UIs out there. Still, if you think something is missing don't hesitate to drop us an issue or a PR. And of course please do so if you find a bug :)
 
 ## Contributors
     project: mongo-edit
