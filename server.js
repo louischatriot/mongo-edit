@@ -61,7 +61,22 @@ app.post('/:collection/:id', routes.docChange);
  */
 app.launchServer = function (cb) {
   var callback = cb ? cb : function () {}
-    , self = this;
+    , self = this
+    , launchServer = function() {
+        self.apiServer = http.createServer(self);   // Let's not call it 'server' we never know if express will want to use this variable!
+
+        // Handle any connection error gracefully
+        self.apiServer.on('error', function () {
+          console.log("An error occured while launching the server, probably a server is already running on the same port!");
+          process.exit(1);
+        });
+
+        // Begin to listen. If the callback gets called, it means the server was successfully launched
+        self.apiServer.listen.apply(self.apiServer, [config.svPort, function() {
+          console.log('Server started on port ' + config.svPort);
+          callback();
+        }]);
+      };
 
   db.open(function (err) {
     if (err) {
@@ -69,19 +84,17 @@ app.launchServer = function (cb) {
       return callback(err);
     }
 
-    self.apiServer = http.createServer(self);   // Let's not call it 'server' we never know if express will want to use this variable!
-
-    // Handle any connection error gracefully
-    self.apiServer.on('error', function () {
-      console.log("An error occured while launching the server, probably a server is already running on the same port!");
-      process.exit(1);
-    });
-
-    // Begin to listen. If the callback gets called, it means the server was successfully launched
-    self.apiServer.listen.apply(self.apiServer, [config.svPort, function() {
-      console.log('Server started on port ' + config.svPort);
-      callback();
-    }]);
+    if (config.db.username && config.db.password) {
+      db.authenticate(config.db.username, config.db.password, function(err, success) {
+        if (err) {
+          console.log("Error authenticate to the DB");
+          return callback(err);
+        }
+        launchServer();
+      });
+    } else {
+      launchServer();
+    }
   });
 };
 
