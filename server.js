@@ -120,7 +120,12 @@ app.stopServer = function (cb) {
  * If not, let the module which required server.js launch it.
  */
 if (module.parent === null) { // Code to execute only when running as main
-  app.launchServer();
+  app.launchServer(function (err) {
+    if (err) {
+      console.log("An error occured, stopping the server");
+      process.exit(1);
+    }
+  });
 }
 
 
