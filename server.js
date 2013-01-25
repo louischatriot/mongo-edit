@@ -62,39 +62,20 @@ app.post('/:collection/:id', routes.docChange);
 app.launchServer = function (cb) {
   var callback = cb ? cb : function () {}
     , self = this
-    , launchServer = function() {
-        self.apiServer = http.createServer(self);   // Let's not call it 'server' we never know if express will want to use this variable!
+    ;
 
-        // Handle any connection error gracefully
-        self.apiServer.on('error', function () {
-          console.log("An error occured while launching the server, probably a server is already running on the same port!");
-          process.exit(1);
-        });
+  db.connectToChosenDatabase(function (err) {
+    if (err) { return callback(err); }
 
-        // Begin to listen. If the callback gets called, it means the server was successfully launched
-        self.apiServer.listen.apply(self.apiServer, [config.svPort, function() {
-          console.log('Server started on port ' + config.svPort);
-          callback();
-        }]);
-      };
+    self.apiServer = http.createServer(self);   // Let's not call it 'server' we never know if Express will want to use this variable!
 
-  db.open(function (err) {
-    if (err) {
-      console.log("Error connecting to the DB");
-      return callback(err);
-    }
+    // Handle any connection error gracefully
+    self.apiServer.on('error', function () {
+      return callback("An error occured while launching the server, probably a server is already running on the same port!");
+    });
 
-    if (config.db.username && config.db.password) {
-      db.authenticate(config.db.username, config.db.password, function(err, success) {
-        if (err) {
-          console.log("Error authenticate to the DB");
-          return callback(err);
-        }
-        launchServer();
-      });
-    } else {
-      launchServer();
-    }
+    // Begin to listen. If the callback gets called, it means the server was successfully launched
+    self.apiServer.listen.apply(self.apiServer, [config.svPort, callback]);
   });
 };
 
@@ -122,8 +103,11 @@ app.stopServer = function (cb) {
 if (module.parent === null) { // Code to execute only when running as main
   app.launchServer(function (err) {
     if (err) {
-      console.log("An error occured, stopping the server");
+      console.log("An error occured, logging error and stopping the server");
+      console.log(err);
       process.exit(1);
+    } else {
+      console.log('Server started on port ' + config.svPort);
     }
   });
 }
