@@ -22,7 +22,7 @@ It allows you to create, edit and delete documents, as well as create and delete
 ## Install and configure
 Prerequisite: <a href="https://github.com/joyent/node" target="_blank"><b>Node.js</b></a> should be installed  
 Install Mongo Edit in one command: `npm install mongo-edit`  
-You can also do it this way: `git clone git@github.com:tldrio/mongo-edit.git` and then `npm install` in the created directory.  
+Do it this way to update Mongo Edit easily: `git clone git@github.com:tldrio/mongo-edit.git` and then `npm install` in the created directory. Then update with a simple `git pull`.  
 
 The config file, `/lib/config.js` needs to be modified to fit your situation. The comments in it explain what the parameters are. Here is a summary:  
 * `db.host`, `db.port`, `db.name`: what database to connect to. It is assumed that you run in a trusted environment and don't need password to access the database (this should be the case for all developpement machines and most production machines with a restrictive firewall).
