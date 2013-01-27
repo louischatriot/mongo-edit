@@ -23,15 +23,15 @@ It allows you to create, edit and delete documents, as well as create and delete
 Prerequisite: <a href="https://github.com/joyent/node" target="_blank"><b>Node.js</b></a> should be installed  
 
 ### Preferred method: clone the repo and use an external config file
-1) Install with a simple `git clone git@github.com:tldrio/mongo-edit.git` and then `npm install` in the created directory.  
-2) Create a config file in the `config` directory (there is a `sampleConfig.js` that explains the parameters and shows an example).  
-3) Run with `node server.js config/yourConfigFile.js`
-4) Whenever you want to update Mongo Edit, a simple `git pull` will do the trick. The config directory is gitignored (except the example file) so your config will be preserved
+**1)** Install with a simple `git clone git@github.com:tldrio/mongo-edit.git` and then `npm install` in the created directory.  
+**2)** Create a config file in the `config` directory (there is a `sampleConfig.js` that explains the parameters and shows an example).  
+**3)** Run with `node server.js config/yourConfigFile.js`  
+**4)** Whenever you want to update Mongo Edit, a simple `git pull` will do the trick. The config directory is gitignored (except the example file) so your config will be preserved
 
 ### Alternatively, you can use npm
-1) Install Mongo Edit in one command: `npm install mongo-edit`  
-2) Modify one of the default configurations in the file `lib/config.js` (which also explains all parameters)  
-3) Run with `NODE_ENV=yourEnv node server.js` to run with default config `yourEnv` or simply `node server.js` to run with the default environment (called 'development')  
+**1)** Install Mongo Edit in one command: `npm install mongo-edit`  
+**2)** Modify one of the default configurations in the file `lib/config.js` (which also explains all parameters)  
+**3)** Run with `NODE_ENV=yourEnv node server.js` to run with default config `yourEnv` or simply `node server.js` to run with the default environment (called 'development')  
 
 You can't update easily with this method though, you would need to `npm install` Mongo Edit somewhere else and copy paste your modified `lib/config.js` to restore your config
 
@@ -44,7 +44,7 @@ Everything is explain in `lib/config.js`, here is a summary:
 * `pagination`: the parameters for the pagination when showing the contents of a collection. The defaults should be fine.
 
 ## Running Mongo Edit in production
-If you run Mongo Edit in production, **run it behind your reverse proxy, and protected with a Basic Auth on SSL**.
+If you run Mongo Edit in production, be aware that it doesn't provide you with any security and will accept connections from anyone. Make sure to **run it behind your reverse proxy, and protected with a Basic Auth over SSL**.
 
 
 ## Feature requests and bugfixes
