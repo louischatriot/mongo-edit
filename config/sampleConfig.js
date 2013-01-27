@@ -1,3 +1,4 @@
+// Example of an external config file
 {
   db: { host: 'localhost'
       , port: 27017
