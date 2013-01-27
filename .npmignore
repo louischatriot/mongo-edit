@@ -1,0 +1,4 @@
+# Ignore all files in the config directory so that they are not replaced when pulling new version
+# Track only config/sampleConfig.js to give an example of an external config file
+config
+! config/sampleConfig.js
