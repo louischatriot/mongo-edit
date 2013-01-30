@@ -4,7 +4,7 @@ Mongo Edit
 Dead simple Graphical User Interface for MongoDB.
 This is NOT a complete admin UI, just a way to edit documents manually with a user-friendly interface, as well as create and delete documents and collections It's a perfect fit for people working with an ODM (for example <a href="https://github.com/LearnBoost/mongoose" target="_blank">Mongoose</a>) which is in charge of the administration.
 
-We use it in production at <a href="http://tldr.io/" target="_blank">tldr.io</a>.
+We use it in production at <a href="http://tldr.io/" target="_blank">tldr.io</a>
 
 ## What does it do?
 It allows you to create, edit and delete documents, as well as create and delete collections. Here are the URLs used in the GUI, to which you can link within your application to directly perform the corresponding operations:  
