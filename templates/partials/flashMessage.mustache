@@ -12,4 +12,10 @@
       $('.alert').alert('close');
     });
   }, 1800);
+
+  // If the History API is supported, remove the querystring from the URL
+  if (window.history) {
+    window.history.pushState({}, "Mongo Edit", window.location.pathname);
+  }
+
 </script>
