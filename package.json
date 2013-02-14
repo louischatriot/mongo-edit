@@ -28,6 +28,9 @@
   , "request": "2.9.x"
   , "sinon": "1.3.x"
   }
+, "scripts": {
+    "test": "make test"
+  }
 , "main": "server"
 , "licence": "MIT"
 }
