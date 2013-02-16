@@ -3,13 +3,13 @@
 {{>partials/flashMessage}}
 
 <!-- Create a document or delete a collection (confirmation asked for this action) -->
-<a href="/{{collectionName}}/newDocument" class="btn btn-info btn-mini">Add a document</a>
+<a href="{{collectionName}}/newDocument" class="btn btn-info btn-mini">Add a document</a>
 <button type="button" class="btn btn-danger btn-mini" id="deleteCollection">Delete collection</button>
 <script>
   // What to do on a click on 'delete'
   $('#deleteCollection').on('click', function () {
     var doit = confirm('Are you sure you want to delete this collection? There is no going back!');
-    if (doit) { window.location = '/{{collectionName}}/delete'; }
+    if (doit) { window.location = '{{relative}}{{collectionName}}/delete'; }
   });
 </script>
 
@@ -17,16 +17,16 @@
 {{#pagination}}
 <div class="pagination pagination-small collection-pagination">
   <ul>
-    <li><a href="/{{collectionName}}?page={{prev}}">&nbsp;&lt;&lt;&nbsp;</a></li>
+    <li><a href="{{collectionName}}?page={{prev}}">&nbsp;&lt;&lt;&nbsp;</a></li>
     {{#pages}}
     <li {{#active}}class="active"{{/active}}>
-      <a href="/{{collectionName}}?page={{pageNumber}}" style="width: 15px; text-align: center;">{{label}}</a>
+      <a href="{{collectionName}}?page={{pageNumber}}" style="width: 15px; text-align: center;">{{label}}</a>
     </li>
     {{/pages}}
-    <li><a href="/{{collectionName}}?page={{next}}">&nbsp;&gt;&gt;&nbsp;</a></li>
+    <li><a href="{{collectionName}}?page={{next}}">&nbsp;&gt;&gt;&nbsp;</a></li>
   </ul>
 
-  <a href="/{{collectionName}}?page=all" class="pagination-all-link">&nbsp;&nbsp;See all results in one page</a>
+  <a href="{{collectionName}}?page=all" class="pagination-all-link">&nbsp;&nbsp;See all results in one page</a>
 </div>
 {{/pagination}}
 
@@ -36,7 +36,7 @@
     <pre class="document doc-preview">{{doc}}</pre>
   </div>
   <div class="span1">
-    <a class="edit-link" href="/{{collectionName}}/{{_id}}/edit"><i class="icon icon-edit"></i></a>
+    <a class="edit-link" href="{{collectionName}}/{{_id}}/edit"><i class="icon icon-edit"></i></a>
   </div>
 </div>
 {{/contents}}
