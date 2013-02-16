@@ -20,7 +20,7 @@ module.exports = function (req, res, next) {
   collection.drop(function (err) {
     if (err) { return res.json(403, err); }
 
-    return res.redirect('/?type=alert-success&message=The collection ' + req.params.collection + ' was deleted, no turning back now!');
+    return res.redirect(config.relative + '?type=alert-success&message=The collection ' + req.params.collection + ' was deleted, no turning back now!');
   });
 
 };
