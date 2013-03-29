@@ -23,7 +23,8 @@ module.exports = function (req, res, next) {
   values._id = req.params.id;
 
   collection = db.collection(req.params.collection);
-  collection.findOne({ _id: new ObjectID(req.params.id) }, function (err, doc) {
+  
+  collection.findOne({ _id: req.params.id.length != 24 ? req.params.id : new ObjectID(req.params.id) }, function (err, doc) {
     values.doc = serialization.serializeForGUI(doc);
 
     res.render('layout', { values: values
