@@ -30,7 +30,7 @@ module.exports = function (req, res, next) {
     collection.insert(newDoc, { safe: true }, function (err, docs) {
       if (err) { return res.json(403, { message: 'Something strange happened', error: err }); }
 
-      return res.redirect(config.relative + req.params.collection + '/' + docs[0]._id + '/edit?type=alert-success&message=The document was successfully created and persisted to the database, you can edit it now');
+      return res.redirect(config.baseUrl + req.params.collection + '/' + docs[0]._id + '/edit?type=alert-success&message=The document was successfully created and persisted to the database, you can edit it now');
     });
   });
 

@@ -34,7 +34,7 @@ module.exports = function (req, res, next) {
       return res.json(403, err);
     }
 
-    return res.redirect(config.relative + req.params.collection + '/' + req.params.id + '/edit?type=alert-success&message=The document was successfully edited');
+    return res.redirect(config.baseUrl + req.params.collection + '/' + req.params.id + '/edit?type=alert-success&message=The document was successfully edited');
   });
 
 };

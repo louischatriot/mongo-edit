@@ -8,15 +8,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" href="{{relative}}assets/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="{{relative}}assets/css/website.css">
+    <link rel="stylesheet" href="{{baseUrl}}assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="{{baseUrl}}assets/css/website.css">
   </head>
 
   <body>
-    <script src="{{relative}}assets/jquery/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="{{relative}}assets/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
-    <script src="{{relative}}assets/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="{{relative}}assets/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{baseUrl}}assets/jquery/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{baseUrl}}assets/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{baseUrl}}assets/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{baseUrl}}assets/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
 
     <div class="container">
       <div class="row">
@@ -24,7 +24,7 @@
           <h1 class="top-left-title"><a href="/">Mongo Edit</a></h1>
           <ul class="nav nav-tabs nav-stacked" id="sidenav">
             {{#collections}}
-            <li><a href="{{relative}}{{.}}">{{.}}</a></li>
+            <li><a href="{{baseUrl}}{{.}}">{{.}}</a></li>
             {{/collections}}
           </ul>
           <!-- Form to create a new collection -->
@@ -37,7 +37,7 @@
               var collectionName = $('#collectionName').val();
               event.preventDefault();
               if (collectionName.length === 0) { return; }
-              window.location = '{{relative}}' + collectionName + '/new';
+              window.location = '{{baseUrl}}' + collectionName + '/new';
             });
           </script>
 
