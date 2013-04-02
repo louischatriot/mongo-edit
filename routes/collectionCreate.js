@@ -19,6 +19,6 @@ module.exports = function (req, res, next) {
   db.createCollection(req.params.collection, {}, function (err) {
     if (err) { return res.json(403, { message: 'Something strange happened', error: err }); }
 
-    return res.redirect(config.baseUrl + req.params.collection + '?type=alert-success&message=The collection was successfully created');
+    return res.redirect(config.baseUrl + '/' + req.params.collection + '?type=alert-success&message=The collection was successfully created');
   });
 };

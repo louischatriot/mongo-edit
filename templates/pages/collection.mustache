@@ -9,7 +9,7 @@
   // What to do on a click on 'delete'
   $('#deleteCollection').on('click', function () {
     var doit = confirm('Are you sure you want to delete this collection? There is no going back!');
-    if (doit) { window.location = '{{baseUrl}}{{collectionName}}/delete'; }
+    if (doit) { window.location = '{{baseUrl}}/{{collectionName}}/delete'; }
   });
 </script>
 

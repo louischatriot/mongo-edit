@@ -11,5 +11,5 @@
 , trustProxy: false
 , templatesDir: 'templates'
 , pagination: { resultsPerPage: 100, pagesAroundCurrent: 2 }
-, baseUrl: '/'
+, baseUrl: ''
 }

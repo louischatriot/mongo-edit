@@ -37,22 +37,20 @@ app.use(app.router); // Map routes
 
 
 // Serving static files from paths that can't be confused with the webpages
-app.get('/assets/css/:file', express.static(__dirname));
-app.get('/assets/jquery/:file', express.static(__dirname));
-app.get('/assets/ace/:file', express.static(__dirname));
-app.get('/assets/bootstrap/:dir/:file', express.static(__dirname));
-app.get('/favicon.ico', function (req, res, next) { return res.send(404); });   // No favicon
+app.use(config.baseUrl, express.static(__dirname));
+app.get('favicon.ico', function (req, res, next) { return res.send(404); });   // No favicon
 
 // Serve the webpages
-app.get('/', routes.index);
-app.get('/:collection', routes.collection);
-app.get('/:collection/new', routes.collectionCreate);
-app.get('/:collection/delete', routes.collectionDelete);
+app.get(config.baseUrl, routes.index);   // Duplicate content but this page is not to be indexed right? And Express behaves badly with this kind of urls
+app.get(config.baseUrl + '/', routes.index);
+app.get(config.baseUrl + '/:collection', routes.collection);
+app.get(config.baseUrl + '/:collection/new', routes.collectionCreate);
+app.get(config.baseUrl + '/:collection/delete', routes.collectionDelete);
 
-app.get('/:collection/newDocument', routes.docCreate);
-app.get('/:collection/:id/edit', routes.docEdit);
-app.get('/:collection/:id/delete', routes.docDelete);
-app.post('/:collection/:id', routes.docChange);
+app.get(config.baseUrl + '/:collection/newDocument', routes.docCreate);
+app.get(config.baseUrl + '/:collection/:id/edit', routes.docEdit);
+app.get(config.baseUrl + '/:collection/:id/delete', routes.docDelete);
+app.post(config.baseUrl + '/:collection/:id', routes.docChange);
 
 
 
