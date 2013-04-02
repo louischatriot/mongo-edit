@@ -41,7 +41,7 @@ app.use(config.baseUrl, express.static(__dirname));
 app.get('favicon.ico', function (req, res, next) { return res.send(404); });   // No favicon
 
 // Serve the webpages
-app.get(config.baseUrl, routes.index);   // Duplicate content but this page is not to be indexed right? And Express behaves badly with this kind of urls
+if (config.baseUrl.length !== 0) { app.get(config.baseUrl, routes.index); }    // Duplicate content but this page is not to be indexed right? And Express behaves badly with this kind of urls
 app.get(config.baseUrl + '/', routes.index);
 app.get(config.baseUrl + '/:collection', routes.collection);
 app.get(config.baseUrl + '/:collection/new', routes.collectionCreate);
