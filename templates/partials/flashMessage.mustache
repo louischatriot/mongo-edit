@@ -15,7 +15,7 @@
 
   // If the History API is supported, remove the querystring from the URL
   if (window.history) {
-    window.history.pushState({}, "Mongo Edit", window.location.pathname);
+    window.history.replaceState({}, "Mongo Edit", window.location.pathname);
   }
 
 </script>
