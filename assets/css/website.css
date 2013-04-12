@@ -29,12 +29,6 @@ body {
   top: -2px;
 }
 
-.doc-preview {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .document {
   font-size: 10px;
   cursor: pointer;
