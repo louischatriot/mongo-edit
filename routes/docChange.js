@@ -7,6 +7,7 @@ var config = require('../lib/config')
   , db = require('../lib/db')
   , ObjectID = require('mongodb').ObjectID
   , serialization = require('../lib/serialization')
+  , helpers = require('../lib/helpers')
   ;
 
 module.exports = function (req, res, next) {
@@ -28,11 +29,9 @@ module.exports = function (req, res, next) {
 
   delete newDoc._id;   // Mongo won't be able to update the doc if it thinks we want to change it's _id
 
-  docId = (req.params.id.length == 12 || req.params.id.match(/^[0-9a-f]{24}$/)) ?
-                                               ObjectID(req.params.id) : req.params.id;
-
   collection = db.collection(req.params.collection);
-  collection.update({ _id: docId }, newDoc, { safe: true }, function (err) {
+  collection.update({ _id: helpers.idForRequestId(req.params.id) },
+                              newDoc, { safe: true }, function (err) {
     if (err) {
       return res.json(403, err);
     }
