@@ -32,6 +32,7 @@ h4e.setup({ app: app
  */
 
 app.use(express.bodyParser());
+app.use(middlewares.ensureConnectionToMongo);
 app.use(middlewares.commonRenderValues);
 app.use(app.router); // Map routes
 
