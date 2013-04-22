@@ -21,7 +21,8 @@ module.exports = function (req, res, next) {
   }
 
   try {
-    docId = new ObjectID(req.params.id);
+    docId = (req.params.id.length == 12 || req.params.id.match(/^[0-9a-f]{24}$/)) ? 
+                                             ObjectID(req.params.id) : req.params.id;
   } catch (e) {
     return res.send(400, e.toString());
   }
