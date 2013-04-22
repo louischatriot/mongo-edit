@@ -7,6 +7,7 @@ var config = require('../lib/config')
   , db = require('../lib/db')
   , ObjectID = require('mongodb').ObjectID
   , serialization = require('../lib/serialization')
+  , helpers = require('../lib/helpers')
   ;
 
 module.exports = function (req, res, next) {
@@ -17,7 +18,8 @@ module.exports = function (req, res, next) {
   }
 
   collection = db.collection(req.params.collection);
-  collection.remove({ _id: new ObjectID(req.params.id) }, { single: true, w:1 }, function (err) {
+  collection.remove({ _id: helpers.idForRequestId(req.params.id) },
+                    { single: true, w:1 }, function (err) {
     if (err) { return res.json(403, err); }
 
     return res.redirect(config.baseUrl + '/' + req.params.collection + '?type=alert-success&message=The document was deleted, no turning back now!');

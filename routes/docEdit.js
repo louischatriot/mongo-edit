@@ -7,6 +7,7 @@ var config = require('../lib/config')
   , db = require('../lib/db')
   , ObjectID = require('mongodb').ObjectID
   , serialization = require('../lib/serialization')
+  , helpers = require('../lib/helpers')
   ;
 
 module.exports = function (req, res, next) {
@@ -21,7 +22,7 @@ module.exports = function (req, res, next) {
   }
 
   try {
-    docId = new ObjectID(req.params.id);
+    docId = helpers.idForRequestId(req.params.id);
   } catch (e) {
     return res.send(400, e.toString());
   }
