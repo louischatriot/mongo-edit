@@ -21,24 +21,21 @@ module.exports = function (req, res, next) {
     return res.json(404, { message: 'Wrong URL format' });
   }
 
-  try {
-    docId = helpers.idForRequestId(req.params.id);
-  } catch (e) {
-    return res.send(400, e.toString());
-  }
+  helpers.getIdFromStringId(req.params.collection, req.params.id, function (err, id) {
+    if (err) { return res.send(400, err); }
 
-  values.collectionName = req.params.collection;
-  values._id = req.params.id;
+    values.collectionName = req.params.collection;
+    values._id = id;
 
-  collection = db.collection(req.params.collection);
-  collection.findOne({ _id: docId }, function (err, doc) {
-    values.doc = serialization.serializeForGUI(doc);
+    collection = db.collection(req.params.collection);
+    collection.findOne({ _id: id }, function (err, doc) {
+      values.doc = serialization.serializeForGUI(doc);
 
-    res.render('layout', { values: values
-                         , partials: partials
-                         });
+      res.render('layout', { values: values
+                           , partials: partials
+                           });
+    });
   });
-
 };
 
 

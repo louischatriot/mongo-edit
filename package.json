@@ -1,36 +1,41 @@
 {
-  "name": "mongo-edit"
-, "version": "0.5.7"
-, "author": { "name": "tldr.io", "email": "meta@tldr.io"}
-, "contributors": [
+  "name": "mongo-edit",
+  "version": "0.5.7",
+  "author": {
+    "name": "tldr.io",
+    "email": "meta@tldr.io"
+  },
+  "contributors": [
     "Louis Chatriot"
-  ]
-, "description": "Dead simple GUI for editing MongoDB documents"
-, "keywords": [
-    "mongodb"
-  , "mongo"
-  , "edit"
-  , "gui"
-  , "simple"
-  ]
-, "homepage": "https://github.com/tldrio/mongo-edit"
-, "repository": { "type": "git"
-                , "url": "git://github.com/tldrio/mongo-edit"
-                }
-, "dependencies": {
-    "h4e": "0.3.0"
-  , "express": "3.0.6"
-  , "mongodb": "1.2.9"
-  }
-, "devDependencies": {
-    "chai": "1.0.x"
-  , "mocha": "1.4.x"
-  , "request": "2.9.x"
-  , "sinon": "1.3.x"
-  }
-, "scripts": {
+  ],
+  "description": "Dead simple GUI for editing MongoDB documents",
+  "keywords": [
+    "mongodb",
+    "mongo",
+    "edit",
+    "gui",
+    "simple"
+  ],
+  "homepage": "https://github.com/tldrio/mongo-edit",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tldrio/mongo-edit"
+  },
+  "dependencies": {
+    "h4e": "0.3.0",
+    "express": "3.0.6",
+    "mongodb": "1.2.9",
+    "async": "~0.2.7"
+  },
+  "devDependencies": {
+    "chai": "1.0.x",
+    "mocha": "1.4.x",
+    "request": "2.9.x",
+    "sinon": "1.3.x"
+  },
+  "scripts": {
     "test": "make test"
-  }
-, "main": "server"
-, "licence": "MIT"
+  },
+  "main": "server",
+  "licence": "MIT"
 }
