@@ -2,8 +2,7 @@
  * The only part that really needs to be tested is the edition part
  * since it is the only one that can potentially damage the database
  *
-*/
-
+ */
 
 var should = require('chai').should()
   , assert = require('chai').assert
