@@ -5,7 +5,6 @@
 
 var config = require('../lib/config')
   , db = require('../lib/db')
-  , ObjectID = require('mongodb').ObjectID
   , serialization = require('../lib/serialization')
   , helpers = require('../lib/helpers')
   ;
@@ -23,20 +22,18 @@ module.exports = function (req, res, next) {
     return res.json(403, { message: 'Badly formatted data', error: e });
   }
 
-  if (newDoc._id.toString() !== req.params.id) {
-    return res.json(403, { message: '_id can\'t be modified' });
-  }
+  helpers.getIdFromStringId(req.params.collection, req.params.id, function (err, id) {
+    if (err) { return res.send(400, err); }
 
-  delete newDoc._id;   // Mongo won't be able to update the doc if it thinks we want to change it's _id
+    // Check that the id was not changed
+    if (!helpers.areIdsEqual(id, newDoc._id)) { return res.json(403, { message: '_id can\'t be modified' }); }
+    delete newDoc._id;   // Mongo won't be able to update the doc if it thinks we want to change it's _id
 
-  collection = db.collection(req.params.collection);
-  collection.update({ _id: helpers.idForRequestId(req.params.id) },
-                              newDoc, { safe: true }, function (err) {
-    if (err) {
-      return res.json(403, err);
-    }
+    collection = db.collection(req.params.collection);
+    collection.update({ _id: id }, newDoc, { safe: true }, function (err) {
+      if (err) { return res.json(403, err); }
 
-    return res.redirect(config.baseUrl + '/' + req.params.collection + '/' + req.params.id + '/edit?type=alert-success&message=The document was successfully edited');
+      return res.redirect(config.baseUrl + '/' + req.params.collection + '/' + req.params.id + '/edit?type=alert-success&message=The document was successfully edited');
+    });
   });
-
 };

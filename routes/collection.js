@@ -5,6 +5,7 @@
 
 var config = require('../lib/config')
   , db = require('../lib/db')
+  , util = require('util')
   ;
 
 module.exports = function (req, res, next) {
@@ -81,7 +82,7 @@ module.exports = function (req, res, next) {
 
       docs.forEach(function (doc) {
         contents.push({ doc: JSON.stringify(doc, undefined, 2)
-                      , _id: doc._id });
+                      , _id: util.isDate(doc._id) ? doc._id.toISOString() : doc._id });   // The "edit" page needs to be given Date-type _ids in ISO format or it won't find them
       });
 
       values.contents = contents;

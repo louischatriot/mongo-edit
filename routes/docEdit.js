@@ -8,6 +8,7 @@ var config = require('../lib/config')
   , ObjectID = require('mongodb').ObjectID
   , serialization = require('../lib/serialization')
   , helpers = require('../lib/helpers')
+  , util = require('util')
   ;
 
 module.exports = function (req, res, next) {
@@ -25,7 +26,7 @@ module.exports = function (req, res, next) {
     if (err) { return res.send(400, err); }
 
     values.collectionName = req.params.collection;
-    values._id = id;
+    values._id = util.isDate(id) ? id.toISOString() : id;   // If the id  is a Date, it is in ISO format in the url so the title should be too
 
     collection = db.collection(req.params.collection);
     collection.findOne({ _id: id }, function (err, doc) {

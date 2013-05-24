@@ -17,13 +17,15 @@ module.exports = function (req, res, next) {
     return res.json(404, { message: 'Wrong URL format' });
   }
 
-  collection = db.collection(req.params.collection);
-  collection.remove({ _id: helpers.idForRequestId(req.params.id) },
-                    { single: true, w:1 }, function (err) {
-    if (err) { return res.json(403, err); }
+  helpers.getIdFromStringId(req.params.collection, req.params.id, function (err, id) {
+    if (err) { return res.send(400, err); }
 
-    return res.redirect(config.baseUrl + '/' + req.params.collection + '?type=alert-success&message=The document was deleted, no turning back now!');
+    collection = db.collection(req.params.collection);
+    collection.remove({ _id: id }, { single: true, w:1 }, function (err) {
+      if (err) { return res.json(403, err); }
+
+      return res.redirect(config.baseUrl + '/' + req.params.collection + '?type=alert-success&message=The document was deleted, no turning back now!');
+    });
   });
-
 };
 
