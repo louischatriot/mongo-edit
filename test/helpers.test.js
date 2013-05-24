@@ -5,7 +5,7 @@ var should = require('chai').should()
   , helpers = require('../lib/helpers')
   ;
 
-describe.only('#areIdsEqual', function () {
+describe('#areIdsEqual', function () {
 
   it('ObjectIDs are not equal to their string or number representation', function () {
     var t = new ObjectID("111111111111111111111111")
