@@ -1,6 +1,6 @@
 {
   "name": "mongo-edit",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": {
     "name": "tldr.io",
     "email": "meta@tldr.io"
@@ -22,7 +22,7 @@
     "url": "git://github.com/tldrio/mongo-edit"
   },
   "dependencies": {
-    "h4e": "0.3.0",
+    "h4e": "0.3.2",
     "express": "3.0.6",
     "mongodb": "1.2.9",
     "async": "~0.2.7"
