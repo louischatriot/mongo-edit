@@ -49,6 +49,7 @@ app.get(config.baseUrl + '/:collection/new', routes.collectionCreate);
 app.get(config.baseUrl + '/:collection/delete', routes.collectionDelete);
 
 app.get(config.baseUrl + '/:collection/newDocument', routes.docCreate);
+app.get(config.baseUrl + '/:collection/:id/', routes.doc);
 app.get(config.baseUrl + '/:collection/:id/edit', routes.docEdit);
 app.get(config.baseUrl + '/:collection/:id/delete', routes.docDelete);
 app.post(config.baseUrl + '/:collection/:id', routes.docChange);
