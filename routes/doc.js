@@ -1,5 +1,5 @@
 /**
- * Display an editor to modify a document
+ * Display document
  *
  */
 
