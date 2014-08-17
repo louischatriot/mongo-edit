@@ -1,6 +1,8 @@
 Mongo Edit
 =========
 
+**IMPORTANT: this software is not maintained anymore, please don't submit anymore pull requests except for bugfixes**
+
 Dead simple Graphical User Interface for MongoDB.
 This is NOT a complete admin UI, just a way to edit documents manually with a user-friendly interface, as well as create and delete documents and collections It's a perfect fit for people working with an ODM (for example <a href="https://github.com/LearnBoost/mongoose" target="_blank">Mongoose</a>) which is in charge of the administration.
 
